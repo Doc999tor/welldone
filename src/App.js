@@ -22,6 +22,7 @@ class App extends Component {
     this.state.links = routerLinks;
     this.state.data = {};
 
+    this.onUpdateCategories = this.onUpdateCategories.bind(this);
   }
 
   componentDidMount () {
@@ -30,6 +31,10 @@ class App extends Component {
       .then(response => response.json())
       .then(data => this.setState({data}));
     }
+  }
+
+  onUpdateCategories (categories) {
+    this.setState({data: {categories}})
   }
 
   render() {
@@ -43,7 +48,7 @@ class App extends Component {
 
             <Route path="/categories" render={
               (props) => (
-                <CategoriesList categories={this.state.data.categories} />
+                <CategoriesList categories={this.state.data.categories} onUpdate={this.onUpdateCategories}/>
               )
             } />
             <Route path="/locations" render={

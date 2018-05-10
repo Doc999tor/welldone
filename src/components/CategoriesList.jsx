@@ -3,14 +3,12 @@ import Category from './Category';
 import CategoryForm from './CategoryForm';
 
 export default class CategoriesList extends Component {
-	constructor(props) {
+	constructor (props) {
 		super(props);
 		this.state = {};
-
-		this.onAdd = this.onAdd.bind(this);
 	}
 
-	onAdd (newCategory) {
+	onAdd = newCategory => {
 		newCategory.id = 1 + Math.max(
 			...this.props.categories.map(cat => cat.id)
 		);
@@ -21,11 +19,24 @@ export default class CategoriesList extends Component {
 		this.props.onUpdate(categories)
 	}
 
+	onDelete = categoryId => {
+		const {categories} = this.state;
 
-
-	static getDerivedStateFromProps (newProps, prevState) {
-		return newProps
+		const index = categories.findIndex(cat => cat.id === categoryId);
+		categories.splice(index, 1);
+		this.props.onUpdate(categories);
 	}
+
+	onUpdate = (categoryId, updatedCategory) => {
+		const {categories} = this.state;
+
+		const index = categories.findIndex(cat => cat.id === categoryId);
+		categories[index] = Object.assign({id: categoryId}, updatedCategory);
+		console.log(categories);
+		this.props.onUpdate(categories);
+	}
+
+	static getDerivedStateFromProps = newProps => newProps;
 
 	render () {
 		return (
@@ -38,13 +49,14 @@ export default class CategoriesList extends Component {
 									key={index}
 									category_id={category.id}
 									text={category.name}
+									onDelete={this.onDelete}
+									onUpdate={this.onUpdate}
 								></Category>
-
 							)
 						)
 					}
 				</ul>
-				<CategoryForm onAdd={this.onAdd} />
+				<CategoryForm onAdd={this.onAdd} action="adding" />
 			</main>
 		)
 	}

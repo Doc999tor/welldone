@@ -5,23 +5,36 @@ export default class CategoryForm extends Component {
 		super(props)
 
 		this.nameInput = React.createRef();
-		this.onSubmit = this.onSubmit.bind(this)
+
+		this.submitLabel = '';
+		switch (this.props.action) {
+			case 'adding': this.submitLabel = 'Add a category'; break;
+			case 'editing': this.submitLabel = 'Change the category'; break;
+			default: console.error('undefined submit label');
+		}
 	}
 
-	componentDidMount () {
-		this.nameInput.current.setCustomValidity('Name has to be filled');
-	}
-
-	onSubmit (e) {
+	onSubmit = e => {
 		e.preventDefault();
 		const form = e.target;
-		const name = form.querySelector('input[name=category_name]').value;
+		var name = this.nameInput.current.value;
+		console.log(name);
 
 		if (name.length) {
-			this.props.onAdd({name});
+
+			switch (this.props.action) {
+				case 'adding': this.props.onAdd({name}); break;
+				case 'editing': this.props.onUpdate({name}); break;
+				default: console.error('undefined submit label');
+			}
+
 			form.reset();
-		} else {
-			form.classList.add('')
+		}
+	}
+
+	onBlur = e => {
+		if (this.props.action === 'editing') {
+			this.props.blur();
 		}
 	}
 
@@ -29,9 +42,18 @@ export default class CategoryForm extends Component {
 		return (
 			<form onSubmit={this.onSubmit}>
 				<label>
-					<input ref={this.nameInput} type="text" name="category_name" required />
-					<input type="submit" value="Add a category" />
+					<input
+						ref={this.nameInput}
+						defaultValue={this.props.value}
+						placeholder={this.submitLabel}
+						autoFocus={this.props.hasOwnProperty('autofocus')}
+						onBlur={this.onBlur}
+						type="text"
+						name="category_name"
+						required
+					/>
 				</label>
+				<input type="submit" value={this.submitLabel} />
 			</form>
 		)
 	}

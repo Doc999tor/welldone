@@ -31,7 +31,7 @@ export default class CategoriesList extends Component {
 		const {categories} = this.state;
 
 		const index = categories.findIndex(cat => cat.id === categoryId);
-		categories[index] = Object.assign({id: categoryId}, updatedCategory);
+		categories[index] = Object.assign(categories[index], updatedCategory);
 		console.log(categories);
 		this.props.onUpdate(categories);
 	}

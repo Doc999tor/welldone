@@ -11,8 +11,8 @@ export default class Category extends Component {
 		return newProps
 	}
 
-	onDelete = () => { this.props.onDelete(this.props.id) }
-	onDoubleClick = (e) => {
+	onDelete = () => { this.props.onDelete(this.props.category_id) }
+	edit = (e) => {
 		this.setState(Object.assign(this.state, {editing: true}));
 	}
 	onUpdate = (newName) => {
@@ -29,7 +29,8 @@ export default class Category extends Component {
 			(!this.state.editing)
 			?
 				<li data-category_id={this.props.category_id}>
-					<span onDoubleClick={this.onDoubleClick} className="category-text">{this.props.text}</span>
+					<span className="category-text">{this.props.text}</span>
+					<button className="category-edit-btn" onClick={this.edit} >✎</button>
 					<button className="category-delete-btn" onClick={this.onDelete} >✖</button>
 				</li>
 			:

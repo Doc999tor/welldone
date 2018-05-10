@@ -1,13 +1,58 @@
 {
-	"categories": [
-		{"id": 1, "name": "asia"},
-		{"id": 2, "name": "north america"},
-		{"id": 3, "name": "europe"}
-	],
-	"locations": [
-		{"name": "tel aviv", "address": "tel aviv, israel", "coordinates": [37, 32], "category_id": 1},
-		{"name": "holon", "address": "holon, israel", "coordinates": [37, 33], "category_id": 1},
-		{"name": "la", "address": "la, usa", "coordinates": [15, 17], "category_id": 2},
-		{"name": "bonn", "address": "bonn, germany", "coordinates": [15, 7], "category_id": 3}
-	]
+  "categories": [
+    {
+      "id": 1,
+      "name": "asia"
+    },
+    {
+      "id": 2,
+      "name": "north america"
+    },
+    {
+      "id": 3,
+      "name": "europe"
+    }
+  ],
+  "locations": [
+    {
+      "id": 1,
+      "name": "tel aviv",
+      "address": "tel aviv, israel",
+      "coordinates": [
+        37,
+        32
+      ],
+      "category_id": 1
+    },
+    {
+      "id": 2,
+      "name": "holon",
+      "address": "holon, israel",
+      "coordinates": [
+        37,
+        33
+      ],
+      "category_id": 1
+    },
+    {
+      "id": 3,
+      "name": "la",
+      "address": "la, usa",
+      "coordinates": [
+        15,
+        17
+      ],
+      "category_id": 2
+    },
+    {
+      "id": 4,
+      "name": "bonn",
+      "address": "bonn, germany",
+      "coordinates": [
+        15,
+        7
+      ],
+      "category_id": 3
+    }
+  ]
 }

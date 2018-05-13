@@ -42,7 +42,6 @@ class App extends Component {
 				this.setState(Object.assign(this.state.data, {data: this.denormalizeState(data)}));
 			});
 		}
-
 	}
 
 	/**
@@ -72,11 +71,12 @@ class App extends Component {
 		this.setState(Object.assign(this.state.data, {categories}));
 	}
 	/**
-	 * resets the this.state.locations on a change of every kind
+	 * resets the this.state.locations on a change of every kind, qsorts the locations array
 	 *
 	 * @param      {array of locations}  locations
 	 */
 	onUpdateLocations = locations => {
+		locations.sort((a,b) => a.name > b.name);
 		this.setState(Object.assign(this.state.data, {locations}));
 	}
 

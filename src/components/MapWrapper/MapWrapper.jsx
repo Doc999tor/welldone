@@ -21,12 +21,14 @@ export default class MapWrapper extends Component {
 
 	render () {
 		return (
-			<GoogleMapReact
-			  bootstrapURLKeys={{key: this.state.apiKey}}
-			  center={this.props.coordinates || this.state.center}
-			  zoom={this.state.zoom}
-			  onClick={this.props.onClickHandler}
-			></GoogleMapReact>
+			<div>
+				<GoogleMapReact
+				  bootstrapURLKeys={{key: this.state.apiKey}}
+				  center={this.props.coordinates || this.state.center}
+				  zoom={this.state.zoom}
+				  onClick={this.props.onClickHandler}
+				></GoogleMapReact>
+			</div>
 		)
 	}
 }

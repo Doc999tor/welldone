@@ -1,0 +1,58 @@
+{
+  "categories": [
+    {
+      "id": 1,
+      "name": "asia"
+    },
+    {
+      "id": 2,
+      "name": "north america"
+    },
+    {
+      "id": 3,
+      "name": "europe"
+    }
+  ],
+  "locations": [
+    {
+      "id": 1,
+      "name": "tel aviv",
+      "address": "tel aviv, israel",
+      "coordinates": {
+        "lat": 32.111767,
+        "lng": 34.801361
+      },
+      "category_id": 1
+    },
+    {
+      "id": 2,
+      "name": "holon",
+      "address": "holon, israel",
+      "coordinates": {
+        "lat": 32.015833,
+        "lng": 34.787384
+      },
+      "category_id": 1
+    },
+    {
+      "id": 3,
+      "name": "la",
+      "address": "la, usa",
+      "coordinates": {
+        "lat": 34.0522342,
+        "lng": -118.2436849
+      },
+      "category_id": 2
+    },
+    {
+      "id": 4,
+      "name": "bonn",
+      "address": "bonn, germany",
+      "coordinates": {
+        "lat": 50.73743,
+        "lng": 7.0982068
+      },
+      "category_id": 3
+    }
+  ]
+}

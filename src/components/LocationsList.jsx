@@ -9,6 +9,7 @@ export default class LocationsList extends Component {
 	}
 
 	onAdd = newLocation => {
+		console.log(newLocation);
 		newLocation.id = 1 + Math.max(
 			...this.props.locations.map(loc => loc.id)
 		);
@@ -39,6 +40,7 @@ export default class LocationsList extends Component {
 	static getDerivedStateFromProps = newProps => newProps;
 
 	render () {
+		console.log(this.props);
 		return (
 			<main>
 				<ul>
@@ -52,6 +54,7 @@ export default class LocationsList extends Component {
 									address={location.address}
 									coordinates={location.coordinates}
 									category={location.category}
+									categories={this.props.categories}
 									onDelete={this.onDelete}
 									onUpdate={this.onUpdate}
 								></Location>
@@ -59,7 +62,7 @@ export default class LocationsList extends Component {
 						)
 					}
 				</ul>
-				<LocationForm onAdd={this.onAdd} action="adding" />
+				<LocationForm onAdd={this.onAdd} action="adding" categories={this.props.categories} />
 			</main>
 		)
 	}

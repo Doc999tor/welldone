@@ -48,10 +48,11 @@ class App extends Component {
 	}
 
 	onUpdateCategories = categories => {
-		this.setState({data: {categories}})
+		this.setState(Object.assign(this.state.data, {categories}));
 	}
 	onUpdateLocations = locations => {
-		this.setState({data: {locations}})
+		console.log(locations);
+		this.setState(Object.assign(this.state.data, {locations}));
 	}
 
 	render() {
@@ -70,7 +71,7 @@ class App extends Component {
 						} />
 						<Route path="/locations" render={
 							(props) => (
-								<LocationsList locations={this.state.data.locations} onUpdate={this.onUpdateLocations} />
+								<LocationsList locations={this.state.data.locations} categories={this.state.data.categories} onUpdate={this.onUpdateLocations} />
 							)
 						} />
 					</Switch>

@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import LocationForm from './LocationForm'
-import GoogleMapReact from 'google-map-react';
+import MapWrapper from './MapWrapper';
 
 export default class Location extends Component {
 	constructor(props) {
@@ -8,13 +8,6 @@ export default class Location extends Component {
 		this.state = {
 			editing: false,
 			locationShown: false,
-			initialMapSettings: {
-				center: {
-					lat: 32.111767,
-					lng: 34.801361
-				},
-				zoom: 11
-			},
 		}
 	}
 
@@ -23,14 +16,19 @@ export default class Location extends Component {
 	}
 
 	toggleLocation = e => {
-		console.log(e.target);
-		console.log(e.target);
 		this.setState(Object.assign(this.state, {locationShown: !this.state.locationShown}));
 	}
 
 	onDelete = () => { this.props.onDelete(this.props.location_id) }
 	edit = (e) => {
-		this.setState(Object.assign(this.state, {editing: true}));
+		const formData = {
+			id: this.props.location_id,
+			name: this.props.name,
+			address: this.props.address,
+			coordinates: this.props.coordinates,
+			category: this.props.category,
+		};
+		this.setState(Object.assign(this.state, {editing: true}, {formData}));
 	}
 	onUpdate = (newName) => {
 		this.props.onUpdate(this.props.location_id, newName);
@@ -41,7 +39,7 @@ export default class Location extends Component {
 	}
 
 	render () {
-		console.log(this.props.coordinates || this.state.initialMapSettings.center);
+		// console.log(this.props);
 		return (
 			(!this.state.editing)
 			?
@@ -53,11 +51,7 @@ export default class Location extends Component {
 					{
 						this.state.locationShown && (
 							<div style={{ height: '300px', width: '300px' }}>
-								<GoogleMapReact
-								  bootstrapURLKeys={{key: "AIzaSyClU7UQTjtzZzc-vm966CT73XNoCaGYA-I"}}
-								  center={this.props.coordinates || this.state.initialMapSettings.center}
-								  zoom={this.state.initialMapSettings.zoom}
-								></GoogleMapReact>
+								<MapWrapper coordinates={this.props.coordinates} />
 							</div>
 						)
 					}
@@ -67,11 +61,14 @@ export default class Location extends Component {
 			:
 				<li data-location_id={this.props.location_id}>
 					<LocationForm
+						formData={this.state.formData}
+						categories={this.props.categories}
 						onUpdate={this.onUpdate}
-						blur={this.abortEditing}
+						onBlur={this.abortEditing}
 						action="editing"
 						autofocus
-						value={this.props.text} />
+						value={this.props.text}
+					/>
 				</li>
 		)
 	}

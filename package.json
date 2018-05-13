@@ -2,6 +2,7 @@
   "name": "welldone",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://doc999tor.github.io/welldone/build/",
   "dependencies": {
     "google-map-react": "^1.0.0",
     "react": "^16.3.2",

@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
-import CategoryForm from './CategoryForm'
+import CategoryForm from '../CategoryForm/CategoryForm'
+import './Category.css'
 
 export default class Category extends Component {
 	constructor(props) {
@@ -29,9 +30,9 @@ export default class Category extends Component {
 			(!this.state.editing)
 			?
 				<li data-category_id={this.props.category_id}>
-					<span className="category-text">{this.props.text}</span>
-					<button className="category-edit-btn" onClick={this.edit} >✎</button>
-					<button className="category-delete-btn" onClick={this.onDelete} >✖</button>
+					<span className="category-text">Category name: {this.props.text}</span>
+					<button className="action-btn category-edit-btn" onClick={this.edit} >✎</button>
+					<button className="action-btn category-delete-btn" onClick={this.onDelete} >✖</button>
 				</li>
 			:
 				<li data-category_id={this.props.category_id}>

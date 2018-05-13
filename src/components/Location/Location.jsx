@@ -1,6 +1,8 @@
 import React, {Component} from 'react'
-import LocationForm from './LocationForm'
-import MapWrapper from './MapWrapper';
+import LocationForm from '../LocationForm/LocationForm'
+import MapWrapper from '../MapWrapper/MapWrapper';
+import Vibration from '../../services/Vibration';
+import './Location.css'
 
 export default class Location extends Component {
 	constructor(props) {
@@ -16,6 +18,7 @@ export default class Location extends Component {
 	}
 
 	toggleLocation = e => {
+		Vibration.vibrate();
 		this.setState(Object.assign(this.state, {locationShown: !this.state.locationShown}));
 	}
 
@@ -39,24 +42,27 @@ export default class Location extends Component {
 	}
 
 	render () {
-		// console.log(this.props);
 		return (
 			(!this.state.editing)
 			?
 				<li data-location_id={this.props.location_id}>
 					<div className="location-text-fields" onClick={this.toggleLocation}>
 						<span className="location-name">{this.props.name}</span>
+						<span className="conj"> at </span>
 						<span className="location-address">{this.props.address}</span>
+						{
+							this.state.locationShown && <span>. Did you feel the vibration? Click again on the address for closing the map</span>
+						}
 					</div>
 					{
 						this.state.locationShown && (
-							<div style={{ height: '300px', width: '300px' }}>
+							<div className="map-wrapper" >
 								<MapWrapper coordinates={this.props.coordinates} />
 							</div>
 						)
 					}
-					<button className="location-edit-btn" onClick={this.edit} >✎</button>
-					<button className="location-delete-btn" onClick={this.onDelete} >✖</button>
+					<button className="action-btn location-edit-btn" onClick={this.edit} >✎</button>
+					<button className="action-btn location-delete-btn" onClick={this.onDelete} >✖</button>
 				</li>
 			:
 				<li data-location_id={this.props.location_id}>

@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
-import Category from './Category';
-import CategoryForm from './CategoryForm';
+import Category from '../Category/Category';
+import CategoryForm from '../CategoryForm/CategoryForm';
+import './CategoriesList.css'
 
 export default class CategoriesList extends Component {
 	constructor (props) {
@@ -41,7 +42,7 @@ export default class CategoriesList extends Component {
 	render () {
 		return (
 			<main>
-				<ul>
+				<ul className="categories-list">
 					{
 						this.props.categories && this.props.categories.map(
 							(category, index) => (

@@ -5,15 +5,20 @@ import {
 	Switch,
 	Redirect
 } from 'react-router-dom';
-import Header from './components/Header';
-import CategoriesList from './components/CategoriesList';
-import LocationsList from './components/LocationsList';
+import Header from './components/Header/Header';
+import CategoriesList from './components/CategoriesList/CategoriesList';
+import LocationsList from './components/LocationsList/LocationsList';
 import './App.css';
 
 class App extends Component {
 	constructor(props) {
 		super(props);
-		this.state = {};
+		this.state = {
+			titles: {
+				categories: 'Categories managing page',
+				locations: 'Explore your locations',
+			}
+		};
 
 		const routerLinks = [
 			{url: "/categories", text: 'Categories'},
@@ -28,7 +33,7 @@ class App extends Component {
 			 fetch('initial_data.json')
 			.then(response => response.json())
 			.then(data => {
-				this.setState({data: this.denormalizeState(data)})
+				this.setState(Object.assign(this.state.data, {data: this.denormalizeState(data)}));
 			});
 		}
 
@@ -59,7 +64,7 @@ class App extends Component {
 		return (
 			<Router>
 				<div id="top_wrapper">
-					<Header links={this.state.links}></Header>
+					<Header links={this.state.links} title={this.state.titles[window.location.pathname.replace(/^\//, '')]} ></Header>
 
 					<Switch>
 						<Redirect exact from="/" to="/categories" />

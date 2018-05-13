@@ -1,10 +1,13 @@
 import React, {Component} from 'react'
 import {Link} from 'react-router-dom'
+import './Header.css'
 
 export default class Header extends Component {
 	render () {
+		console.log(this.props);
 		return (
 		  <header>
+		  	<h1>{this.props.title}</h1>
 				<nav>
 					{
 						this.props.links.map((link, index) => (

@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
-import CategoriesSelect from './CategoriesSelect';
-import MapWrapper from './MapWrapper';
+import CategoriesSelect from '../CategoriesSelect/CategoriesSelect';
+import MapWrapper from '../MapWrapper/MapWrapper';
+import './LocationForm.css'
 
 export default class LocationForm extends Component {
 	constructor(props) {
@@ -93,7 +94,9 @@ export default class LocationForm extends Component {
 				ref={this.form}
 				onSubmit={this.onSubmit}
 			>
+				<h2>{this.submitLabel} form. {this.props.action === 'editing' && <span>click outside the form for closing it</span>}</h2>
 				<label>
+					<span>Enter the location name:</span>
 					<input
 						ref={this.nameInput}
 						defaultValue={this.props.value}
@@ -105,6 +108,7 @@ export default class LocationForm extends Component {
 					/>
 				</label>
 				<label>
+					<span>Enter the location address:</span>
 					<input
 						ref={this.addressInput}
 						placeholder="Enter a location address"
@@ -121,8 +125,8 @@ export default class LocationForm extends Component {
 						onChange={this.changeCategory}
 					/>
 				</label>
-				<div style={{ height: '300px', width: '300px', display: 'block' }}>
-					<span style={{position: 'absolute', zIndex: 1, backgroundColor: 'white' }}>Choose the coordinates by clicking the map below</span>
+				<div className="map-wrapper">
+					<span>Choose the coordinates by clicking the map below{this.state.coordinates && <span>. (coordinates saved)</span>}</span>
 					<MapWrapper
 						coordinates={this.props.coordinates}
 						onClickHandler={this.getCoordinates}

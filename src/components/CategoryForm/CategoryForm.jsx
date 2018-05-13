@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import './CategoryForm.css'
 
 export default class CategoryForm extends Component {
 	constructor(props) {
@@ -41,7 +42,9 @@ export default class CategoryForm extends Component {
 	render () {
 		return (
 			<form onSubmit={this.onSubmit}>
+				<h2>{this.submitLabel} form</h2>
 				<label>
+					<span>Enter the category name:</span>
 					<input
 						ref={this.nameInput}
 						defaultValue={this.props.value}
@@ -53,7 +56,9 @@ export default class CategoryForm extends Component {
 						required
 					/>
 				</label>
-				<input type="submit" value={this.submitLabel} />
+				<label>
+					<input type="submit" value={this.submitLabel} className="action-btn" />
+				</label>
 			</form>
 		)
 	}

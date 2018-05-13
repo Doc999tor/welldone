@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
-import Location from './Location';
-import LocationForm from './LocationForm';
+import Location from '../Location/Location';
+import LocationForm from '../LocationForm/LocationForm';
+import './LocationsList.css'
 
 export default class LocationsList extends Component {
 	constructor (props) {

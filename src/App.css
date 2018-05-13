@@ -1,28 +1,73 @@
-.App {
+:root {
+  --secondary-color: darkkhaki;
+}
+
+body {
+  margin: 0;
+  padding: 1rem 1rem calc(1rem * 2 + 1rem * 1.5 + 1rem * 1.5); /* bottom button height + 1.5rem margin for position: fixed nav compensation   */
+  background-color: rgba(0,0,0,.05);
+  font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+  color: #333;
   text-align: center;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
+.action-btn {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-color: var(--secondary-color);
+  border-width: 1px;
+  border-style: solid;
+  color: currentColor;
+  font-size: 1rem;
+}
+button.action-btn:first-of-type {
+  margin-inline-start: auto;
+}
+button.action-btn:not(:last-of-type) {
+  margin-inline-end: .5rem;
 }
 
-.App-header {
-  background-color: #222;
-  height: 150px;
-  padding: 20px;
-  color: white;
+main ul {
+  padding-left: 0;
+  text-align: start;
+}
+main ul li {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  list-style: none;
+}
+main ul li:not(:last-of-type) {
+  margin-bottom: 1rem;
 }
 
-.App-title {
-  font-size: 1.5em;
+form {
+  text-align: start;
+}
+form h2 {
+  font-weight: normal;
+}
+form label {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+}
+form label:not(:last-of-type) {
+  margin-bottom: 1rem;
+}
+form label > span {
+  width: 100%;
 }
 
-.App-intro {
-  font-size: large;
+form label   select,
+form label > input {
+  width: 100%;
+  padding: .5rem 1rem;
 }
+form label > input::-webkit-input-placeholder { color: var(--secondary-color); }
+form label > input::-moz-placeholder { color: var(--secondary-color); }
+form label > input:-ms-input-placeholder { color: var(--secondary-color); }
 
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+form label input[type=submit] {
+
 }

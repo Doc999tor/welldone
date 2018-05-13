@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import GoogleMapReact from 'google-map-react';
+import './MapWrapper.css'
 
 export default class MapWrapper extends Component {
 	constructor (props) {

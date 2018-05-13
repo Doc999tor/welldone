@@ -4,7 +4,6 @@ import './Header.css'
 
 export default class Header extends Component {
 	render () {
-		console.log(this.props);
 		return (
 		  <header>
 		  	<h1>{this.props.title}</h1>

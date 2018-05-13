@@ -20,6 +20,12 @@ export default class LocationForm extends Component {
 		}
 	}
 
+	/**
+	 * first render happens without any data
+	 * the second happens asynchronously after getting the ajax response
+	 *
+	 * @param      {standard props object}
+	 */
 	static getDerivedStateFromProps = newProps => {
 		return newProps.categories
 			? Object.assign({
@@ -28,6 +34,9 @@ export default class LocationForm extends Component {
 			: newProps;
 	}
 
+	/**
+	 * sets and after unmounting removes document.body click for closing the editing form on blur
+	 */
 	componentDidMount () {
 		if (this.props.action === 'editing') {
 			document.body.addEventListener('click', this.onBlur);
@@ -44,7 +53,6 @@ export default class LocationForm extends Component {
 		const address = this.addressInput.current.value;
 		const category_id = Number(this.state.category);
 		const category = this.props.categories.find(cat => cat.id === category_id)
-		console.log(name, address, category_id);
 
 		if (name && address && category_id) {
 			const newLocation = {
@@ -88,7 +96,6 @@ export default class LocationForm extends Component {
 	}
 
 	render () {
-		console.log(this.props);
 		return (
 			<form
 				ref={this.form}

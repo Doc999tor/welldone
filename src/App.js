@@ -11,6 +11,12 @@ import LocationsList from './components/LocationsList/LocationsList';
 import './App.css';
 
 class App extends Component {
+
+	/**
+	 * resets routerLinks and h1 titles for each route
+	 *
+	 * @param      {object}  props
+	 */
 	constructor(props) {
 		super(props);
 		this.state = {
@@ -38,8 +44,13 @@ class App extends Component {
 		}
 
 	}
+
+	/**
+	 * assumed as |categories| < |locations| -> reducing less categories array to a map for better (O(1)) access performance
+	 *
+	 * @param      {object of two arrays}  data
+	 */
 	denormalizeState (data) {
-		// assumed as |categories| < |locations| -> reducing less categories array to a map for better (O(1)) access performance
 		const catObj = data.categories.reduce((obj, cat) => {
 			obj[cat.id] = cat;
 			return obj;
@@ -52,11 +63,20 @@ class App extends Component {
 		return data;
 	}
 
+	/**
+	 * resets the this.state.categories on a change of every kind
+	 *
+	 * @param      {array of categories}  categories
+	 */
 	onUpdateCategories = categories => {
 		this.setState(Object.assign(this.state.data, {categories}));
 	}
+	/**
+	 * resets the this.state.locations on a change of every kind
+	 *
+	 * @param      {array of locations}  locations
+	 */
 	onUpdateLocations = locations => {
-		console.log(locations);
 		this.setState(Object.assign(this.state.data, {locations}));
 	}
 

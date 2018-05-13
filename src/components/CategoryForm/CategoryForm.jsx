@@ -19,13 +19,15 @@ export default class CategoryForm extends Component {
 		e.preventDefault();
 		const form = e.target;
 		var name = this.nameInput.current.value;
-		console.log(name);
 
 		if (name.length) {
+			const newCategory = {
+				name,
+			};
 
 			switch (this.props.action) {
-				case 'adding': this.props.onAdd({name}); break;
-				case 'editing': this.props.onUpdate({name}); break;
+				case 'adding': this.props.onAdd(newCategory); break;
+				case 'editing': this.props.onUpdate(newCategory); break;
 				default: console.error('undefined submit label');
 			}
 
@@ -33,6 +35,9 @@ export default class CategoryForm extends Component {
 		}
 	}
 
+	/**
+	 * closing the editing form on blur
+	 */
 	onBlur = e => {
 		if (this.props.action === 'editing') {
 			this.props.blur();

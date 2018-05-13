@@ -9,12 +9,15 @@ export default class LocationsList extends Component {
 		this.state = {};
 	}
 
+	/**
+	 * calculating autoincrement/identity id for a new location
+	 *
+	 * @param      {location object}
+	 */
 	onAdd = newLocation => {
-		console.log(newLocation);
 		newLocation.id = 1 + Math.max(
 			...this.props.locations.map(loc => loc.id)
 		);
-		console.log(newLocation);
 		const {locations} = this.state;
 		locations.push(newLocation);
 
@@ -41,7 +44,6 @@ export default class LocationsList extends Component {
 	static getDerivedStateFromProps = newProps => newProps;
 
 	render () {
-		console.log(this.props);
 		return (
 			<main>
 				<ul>

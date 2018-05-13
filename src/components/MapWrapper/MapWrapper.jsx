@@ -3,6 +3,9 @@ import GoogleMapReact from 'google-map-react';
 import './MapWrapper.css'
 
 export default class MapWrapper extends Component {
+	/**
+	 * simple wrapper for incapsulating api key and default settings
+	 */
 	constructor (props) {
 		super(props)
 

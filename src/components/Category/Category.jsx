@@ -25,7 +25,6 @@ export default class Category extends Component {
 	}
 
 	render () {
-		console.log(this.props);
 		return (
 			(!this.state.editing)
 			?

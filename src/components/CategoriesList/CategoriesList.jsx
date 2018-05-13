@@ -9,11 +9,15 @@ export default class CategoriesList extends Component {
 		this.state = {};
 	}
 
+	/**
+	 * calculating autoincrement/identity id for a new category
+	 *
+	 * @param      {category object}
+	 */
 	onAdd = newCategory => {
 		newCategory.id = 1 + Math.max(
 			...this.props.categories.map(cat => cat.id)
 		);
-		console.log(newCategory);
 		const {categories} = this.state;
 		categories.push(newCategory);
 
@@ -33,7 +37,6 @@ export default class CategoriesList extends Component {
 
 		const index = categories.findIndex(cat => cat.id === categoryId);
 		categories[index] = Object.assign(categories[index], updatedCategory);
-		console.log(categories);
 		this.props.onUpdate(categories);
 	}
 

@@ -17,6 +17,12 @@ export default class Location extends Component {
 		return newProps
 	}
 
+	/**
+	 * opens a map for a click on an address bar
+	 * sends a vibration call to the Vibration service
+	 *
+	 * @param      {event proxy}  click event
+	 */
 	toggleLocation = e => {
 		Vibration.vibrate();
 		this.setState(Object.assign(this.state, {locationShown: !this.state.locationShown}));
@@ -37,6 +43,11 @@ export default class Location extends Component {
 		this.props.onUpdate(this.props.location_id, newName);
 		this.setState(Object.assign(this.state, {editing: false}));
 	}
+
+	/**
+	 * removes a form and render the location bar back
+	 * the data remains unchanged
+	 */
 	abortEditing = () => {
 		this.setState(Object.assign(this.state, {editing: false}));
 	}
